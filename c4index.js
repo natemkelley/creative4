@@ -1,7 +1,7 @@
 //declaration of playlist app
 var playlistApp = angular.module('playlistApp', []);
 
-//Playlist controller
+//playlist controller
 playlistApp.controller('playlistController', function ($scope) {
     //random number to choose background color
     var randomNum = function (min, max) {
@@ -10,7 +10,7 @@ playlistApp.controller('playlistController', function ($scope) {
 
     //choose a random background color
     $scope.radio = {
-        backgrounds: ['#535353', '#3498db', '#9b59b6', '#e67e22', '#e74c3c'],
+        backgrounds: ['#535353', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#08f0f0','#1bd469'],
         playing: false
     };
 
@@ -23,8 +23,7 @@ playlistApp.controller('playlistController', function ($scope) {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // This function creates an <iframe> (and YouTube player)
-    // after the API code downloads.
+    // This function creates an <iframe> (and YouTube player) after the API code downloads.
     window.onYouTubeIframeAPIReady = function () {
         $scope.player = new YT.Player('player', {
             height: '180',
@@ -41,7 +40,7 @@ playlistApp.controller('playlistController', function ($scope) {
         });
     }
 
-    // The API will call this function when the video player is ready.
+    //Youtube built in API call that triggers the video player is ready.
     function onPlayerReady(event) {
         //immediately load and pause video
         event.target.pauseVideo();
@@ -53,7 +52,7 @@ playlistApp.controller('playlistController', function ($scope) {
         $scope.radio.playing = false;
     }
 
-    // The API calls this function when the player's state changes.
+    //Youtube built in API call that triggers when the player's state changes.
     function onPlayerStateChange(event) {
         //change the icon if player is playing
         if (event.data == YT.PlayerState.PLAYING) {
