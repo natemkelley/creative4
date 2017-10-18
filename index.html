@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube iFrame API & Angular.js</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="c4style.css">
+</head>
+
+<body ng-app="playlistApp">
+    <div class="base-outlet" ng-controller="playlistController" style="background: {{radio.background}}">
+        <div id="player" class=""></div>
+
+        <!-- THE PLAYER CLASS -->
+        <div class="player">
+            <div class="player-controls">
+                <!--<button ng-click="prevVideo()"><span class="fa fa-fast-backward"></span></button>-->
+                <span ng-if="radio.playing === false">
+                    <button ng-click="playVideo()"><span class="fa fa-play"></span></button>
+                </span>
+                <span ng-if="radio.playing === true">
+                    <button ng-click="pauseVideo()"><span class="fa fa-pause"></span></button>
+                </span>
+                <!--<button ng-click="nextVideo()"><span class="fa fa-fast-forward"></span></button>-->
+            </div>
+            <div class="player-info">
+                <a style="cursor:pointer" data-toggle="modal" data-target="#myModal"><span>{{track.title}}</span></a>
+            </div>
+        </div>
+
+        <!-- '?' acts as a boolean -->
+        <div class="player-label {{radio.playing ? 'spin' : ''}}" style="{{track ? 'background-image: url(https://img.youtube.com/vi/'+track.video_id+'/hqdefault.jpg)' : 'background-color:'+'rgba(7, 7, 7, 0.40)'}}"></div>
+
+        <div class="player-circle"></div>
+    </div>
+</body>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+<script src='https://apis.google.com/js/client.js?onload=googleApiClientReady'></script>
+<script src="c4index.js"></script>
+
+</html>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User Input</h4>
+            </div>
+            <div class="modal-body">
+                <img src="http://cdn2.wpbeginner.com/wp-content/uploads/2014/01/youtubevideoid.jpg" alt="Smiley face" height="100%" width="100%">  
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputEmail3">Video ID</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default" data-dismiss="modal">Submit Video</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
