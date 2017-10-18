@@ -26,7 +26,7 @@
 
 <!-- playlistApp Angular Call -->
 
-<body ng-app="playlistApp">
+<body ng-app="playlistApp" style="cursor: url(sword.png),url(diamondsword.cur),auto">
     <!-- playlistApp Controller call & change background -->
     <div class="base-outlet" ng-controller="playlistController" style="background: {{radio.background}}">
         <!--iframe for youtube video (this plays the song). Then gets hidden with css -->
@@ -44,12 +44,12 @@
             </div>
             <div class="player-info">
                 <!-- Override cursor type & bootstrap modal call -->
-                <a style="cursor:url(sword.png),url(diamondsword.cur),auto" data-toggle="modal" data-target="#changeVideoID"><span>{{track.title}}</span></a>
+                <a style="cursor:pointer" data-toggle="modal" data-target="#changeVideoID"><span>{{track.title}}</span></a>
             </div>
         </div>
 
         <!--Places image on record player... '?' acts as a boolean -->
-        <a style="cursor:url(sword.png),url(diamondsword.cur),auto" data-toggle="modal" data-target="#changeVideoID"><div class="player-label {{radio.playing ? 'spin' : ''}}" style="{{track ? 'background-image: url(https://img.youtube.com/vi/'+track.video_id+'/hqdefault.jpg)' : 'background-color:'+'rgba(7, 7, 7, 0.40)'}}"></div></a>
+        <a style="cursor:pointer" data-toggle="modal" data-target="#changeVideoID"><div class="player-label {{radio.playing ? 'spin' : ''}}" style="{{track ? 'background-image: url(https://img.youtube.com/vi/'+track.video_id+'/hqdefault.jpg)' : 'background-color:'+'rgba(7, 7, 7, 0.40)'}}"></div></a>
 
         <div class="player-circle"></div>
     </div>
