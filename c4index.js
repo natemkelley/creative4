@@ -10,7 +10,7 @@ playlistApp.controller('playlistController', function ($scope) {
 
     //choose a random background color
     $scope.radio = {
-        backgrounds: ['#535353', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#08f0f0','#1bd469'],
+        backgrounds: ['#535353', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#0fe5e5','#26c96b', '#dff81d'],
         playing: false
     };
 
