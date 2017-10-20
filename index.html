@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 
+<!-- The inspiration for this project came from https://codepen.io/adamtowle/pen/BoZjyZ -->
+
 <head>
     <!-- viewport for better mobile viewing -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Youtube iFrame API & Angular.js</title>
+    <title>Creative #4</title>
 
     <!-- Latest compiled and minified bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -49,9 +51,43 @@
         </div>
 
         <!--Places image on record player... '?' acts as a boolean -->
-        <a style="cursor:pointer" data-toggle="modal" data-target="#changeVideoID"><div class="player-label {{radio.playing ? 'spin' : ''}}" style="{{track ? 'background-image: url(https://img.youtube.com/vi/'+track.video_id+'/hqdefault.jpg)' : 'background-color:'+'rgba(7, 7, 7, 0.40)'}}"></div></a>
+        <a style="cursor:pointer" data-toggle="modal" data-target="#changeVideoID">
+            <div class="player-label {{radio.playing ? 'spin' : ''}}" style="{{track ? 'background-image: url(https://img.youtube.com/vi/'+track.video_id+'/hqdefault.jpg)' : 'background-color:'+'rgba(7, 7, 7, 0.40)'}}"></div>
+        </a>
 
         <div class="player-circle"></div>
+        <div id="changeVideoID" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Choose a Record</h4>
+                        <p><br><strong>Just as a quick note, VEVO and other YouTube music services block their videos from playing in our record player :(</strong></p>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <img src="http://cdn2.wpbeginner.com/wp-content/uploads/2014/01/youtubevideoid.jpg" alt="Smiley face" height="100%" width="100%">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputEmail3">Video ID</label>
+                                <div class="col-sm-10">
+                                    <input ng-model="selectedId" class="form-control" id="video-id" placeholder="Paste here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button ng-click="playVideoById(selectedId)" id="submit-button" type="submit" class="btn btn-default" data-dismiss="modal">Submit Video</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </body>
 
@@ -66,34 +102,3 @@
 
 
 <!-- changeVideoID Bootstrap Modal.  -->
-<div id="changeVideoID" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <!-- Modal header -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">User Input</h4>
-                <p><br>Just as a quick note, VEVO and other YouTube music service block their videos from playing in our record player :(</p>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <img src="http://cdn2.wpbeginner.com/wp-content/uploads/2014/01/youtubevideoid.jpg" alt="Smiley face" height="100%" width="100%">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="inputEmail3">Video ID</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default" data-dismiss="modal">Submit Video</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-</div>

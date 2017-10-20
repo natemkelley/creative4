@@ -22,13 +22,14 @@ playlistApp.controller('playlistController', function ($scope) {
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+    
     // This function creates an <iframe> (and YouTube player) after the API code downloads.
     window.onYouTubeIframeAPIReady = function () {
+        
         $scope.player = new YT.Player('player', {
             height: '180',
             width: '180',
-            videoId: 'VQWeJYI033Q', //video id from youtube
+            videoId: 'siRMGLA6FsU', //video id from youtube
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -54,6 +55,10 @@ playlistApp.controller('playlistController', function ($scope) {
 
     //Youtube built in API call that triggers when the player's state changes.
     function onPlayerStateChange(event) {
+
+        $scope.$apply(function () {
+            $scope.track = event.target.getVideoData();
+        });
         //change the icon if player is playing
         if (event.data == YT.PlayerState.PLAYING) {
             $scope.$apply(function () {
@@ -68,9 +73,26 @@ playlistApp.controller('playlistController', function ($scope) {
 
     //when play button is clicked file these functions
     $scope.playVideo = function () {
+        console.log("playing video");
         $scope.player.playVideo();
     }
     $scope.pauseVideo = function () {
+        console.log("pausing video");
         $scope.player.pauseVideo();
+    }
+    $scope.nextVideo = function () {
+        $scope.player.nextVideo();
+    }
+    $scope.playVideoById = function (nextVideoId) {
+        console.log("selecting new video by id");
+        //var newId = document.getElementById("video-id").value;
+        console.log("new video id:" + nextVideoId);
+        $scope.player.loadVideoById(nextVideoId);
+//        $scope.player.cueVideoById(nextVideoId);
+        //$scope.player.nextVideo();
+
+
+//        console.log("video_id:" + track.video_id);
+
     }
 });
