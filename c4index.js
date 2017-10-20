@@ -10,7 +10,7 @@ playlistApp.controller('playlistController', function ($scope) {
 
     //choose a random background color
     $scope.radio = {
-        backgrounds: ['#535353', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#0fe5e5','#26c96b', '#dff81d'],
+        backgrounds: ['#535353', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#0fe5e5', '#26c96b', '#d1e536', '#966020', '#dedede', '#d833b8'],
         playing: false
     };
 
@@ -22,10 +22,9 @@ playlistApp.controller('playlistController', function ($scope) {
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
+
     // This function creates an <iframe> (and YouTube player) after the API code downloads.
     window.onYouTubeIframeAPIReady = function () {
-        
         $scope.player = new YT.Player('player', {
             height: '180',
             width: '180',
@@ -55,7 +54,6 @@ playlistApp.controller('playlistController', function ($scope) {
 
     //Youtube built in API call that triggers when the player's state changes.
     function onPlayerStateChange(event) {
-
         $scope.$apply(function () {
             $scope.track = event.target.getVideoData();
         });
@@ -69,30 +67,32 @@ playlistApp.controller('playlistController', function ($scope) {
                 $scope.radio.playing = false;
             });
         }
+        $scope.radio.background = $scope.radio.backgrounds[randomNum(0, $scope.radio.backgrounds.length)];
+
     }
 
-    //when play button is clicked file these functions
+    //when play button is clicked these functions fire
     $scope.playVideo = function () {
         console.log("playing video");
         $scope.player.playVideo();
     }
+
     $scope.pauseVideo = function () {
         console.log("pausing video");
         $scope.player.pauseVideo();
     }
+
     $scope.nextVideo = function () {
         $scope.player.nextVideo();
     }
+
+
+    //change video id function
     $scope.playVideoById = function (nextVideoId) {
         console.log("selecting new video by id");
-        //var newId = document.getElementById("video-id").value;
         console.log("new video id:" + nextVideoId);
         $scope.player.loadVideoById(nextVideoId);
-//        $scope.player.cueVideoById(nextVideoId);
-        //$scope.player.nextVideo();
-
-
-//        console.log("video_id:" + track.video_id);
+        $scope.radio.background = $scope.radio.backgrounds[randomNum(0, $scope.radio.backgrounds.length)];
 
     }
 });
